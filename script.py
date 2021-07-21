@@ -54,16 +54,36 @@ print(number)
 # print(container.prettify())
 # print(len(container_address))
 # print(len(container_mobile))
-opening = soup_one.find('div', {'id': 'opening-hours-mini'})
-opening_days =  soup_one.findAll('span', {'class':'long-oh-day'})
-opening_hours = soup_one.findAll('div', {'class': 'interval-field'})
 
-print(len(opening_days))
+
+opening = soup_one.find('div', {'id': 'opening-hours-mini'})
+
+# Getting days and hours of the working week:
+opening_days =  soup_one.findAll('span', {'class':'long-oh-day'})
+opening_hours = soup_one.findAll('div', {'class': 'interval-field'}, 'div.span')
+# print(opening.prettify())
+# print(len(opening_days))
 # print(opening_days)
 # print(opening.prettify())
 for days  in opening_days[:7]:
     day = days.text 
     day_item = day + ': '
     print(day_item)
-    # if day.index > 7:
-    #     break
+    if day == 'Saturday' or day == "Sunday":
+        print('Closed')
+    else:
+
+    # print(day_item)
+        for hours in opening_hours[:1]:
+            hour = hours.text
+            # if opening_hours.index == [2] or opening_hours.index == [3]:
+            #     print('Closed')
+            # else:
+            print(hour)
+
+# closed_days =  soup_one.findAll('tr', {'class':' weekend-days'})
+# closed_hours = soup_one.findAll('div', {'class': 'interval-field'}, 'div.span')
+# for weekends in closed_days:
+#     weekend = weekends.text 
+#     week_item = weekend
+#     print(weekend)
