@@ -15,39 +15,42 @@ req = scraper.get(my_url)
 # page_html = req.read()
 req.close()
 # page_soup = soup(page_html, 'html.parser')
-# print(page_soup.h1)
 
 soup_one = soup(req.content, 'html5lib')
 # print(soup_one.h1) tests if it works
 
-# print(soup_one.prettify())
 # print(scraper.get(soup_one.prettify()))
 
 container = soup_one.find('div', {'id': 'company-address-container'})
 container_address = soup_one.findAll('span', {'class':'cp-details-label'})
-container_mobile = soup_one.findAll('div', {'id': 'secondary-details'} )
+container_data = soup_one.findAll('div', {'class':'col-sm-8'})
+
 # contain = container_address[0]
 for contain in container_address:
     address = contain.text 
     address_item = address + ', '
     print(address_item)
+
+for conts in container_data:
+    con_data = conts.text
+    print(con_data)
 #     address_title = container_address[0].text
 #     address = container_address[1].text
 #     address_text = container.div.div.div.text
 #     print(address_title)
 #     print(address_text)
 
-# for conta in container_mobile:
-#     mobille = conta.text
-#     mob = mobille + ', '
-#     print(mob)
+
 
 # Getting mobile number:
+container_mobile = soup_one.findAll('div', {'id': 'secondary-details'} )
 mobile = container_mobile[0].text 
-mobille = mobile[0:7]
-number = mobile[8:20]
-print(mobille)
-print(number)
+# mobille = mobile[0:7]
+# number = mobile[8:20]
+mob = mobile[0:20]
+# print(mobille)
+# print(number)
+print(mob)
 
 
 # print(container.div.div.div.text)
