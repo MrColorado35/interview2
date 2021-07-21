@@ -25,16 +25,7 @@ container = soup_one.find('div', {'id': 'company-address-container'})
 container_address = soup_one.findAll('span', {'class':'cp-details-label'})
 company = soup_one.find('span', {'id': 'cntct-name'})
 comp = company.text
-# print(comp)
 container_data = soup_one.findAll('div', {'class':'col-sm-8'})
-
-# container_mobile = soup_one.findAll('div', {'id': 'secondary-details'} )
-# mobile = container_mobile[0].text 
-
-opening = soup_one.find('div', {'id': 'opening-hours-mini'})
-# Getting days and hours of the working week:
-opening_days =  soup_one.findAll('span', {'class':'long-oh-day'})
-opening_hours = soup_one.findAll('div', {'class': 'interval-field'}, 'div.span')
 
 filename = 'data_three.csv'
 f = open(filename, 'w')
@@ -56,8 +47,7 @@ for conts in container_data[:3]:
 #     address_title = container_address[0].text
 #     address = container_address[1].text
 #     address_text = container.div.div.div.text
-#     print(address_title)
-#     print(address_text)
+
 
 
 
@@ -72,32 +62,22 @@ number = mobile[8:20]
 f.write('\n' + mobille + ', ' + number + '\n')
 
 
-
-# print(container.div.div.div.text)
-# print(container.prettify())
-# print(len(container_address))
-# print(len(container_mobile))
-
-
-# opening = soup_one.find('div', {'id': 'opening-hours-mini'})
+opening = soup_one.find('div', {'id': 'opening-hours-mini'})
 
 # Getting days and hours of the working week:
-# opening_days =  soup_one.findAll('span', {'class':'long-oh-day'})
-# opening_hours = soup_one.findAll('div', {'class': 'interval-field'}, 'div.span')
+opening_days =  soup_one.findAll('span', {'class':'long-oh-day'})
+opening_hours = soup_one.findAll('div', {'class': 'interval-field'}, 'div.span')
 
 f.write('Opening time: \n')
 for days  in opening_days[:7]:
     day = days.text 
     day_item = day + ': '
     f.write(day_item + ', ')
-    # print(day_item)
     if day == 'Saturday' or day == "Sunday":
         f.write('Closed'+ ', \n')
-        # print('Closed')
     else:
         for hours in opening_hours[:1]:
             hour = hours.text
             f.write(hour + ', \n')
-            # print(hour)
 f.close()
 
