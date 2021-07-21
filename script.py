@@ -23,10 +23,13 @@ soup_one = soup(req.content, 'html5lib')
 
 container = soup_one.find('div', {'id': 'company-address-container'})
 container_address = soup_one.findAll('span', {'class':'cp-details-label'})
+company = soup_one.find('span', {'id': 'cntct-name'})
+comp = company.text
+# print(comp)
 container_data = soup_one.findAll('div', {'class':'col-sm-8'})
 
-container_mobile = soup_one.findAll('div', {'id': 'secondary-details'} )
-mobile = container_mobile[0].text 
+# container_mobile = soup_one.findAll('div', {'id': 'secondary-details'} )
+# mobile = container_mobile[0].text 
 
 opening = soup_one.find('div', {'id': 'opening-hours-mini'})
 # Getting days and hours of the working week:
@@ -44,10 +47,10 @@ for contain in container_address:
     # address_item = address + ': '
     f.write(address + ', ')
     # print(address_item)
-f.write('\n')
+f.write('\n' + comp + ', ')
 for conts in container_data[:3]:
     con_data = conts.text
-    f.write(con_data + ', ')
+    f.write( con_data + ', ')
     # f.write('\n')
     # print(con_data)
 #     address_title = container_address[0].text
@@ -56,18 +59,18 @@ for conts in container_data[:3]:
 #     print(address_title)
 #     print(address_text)
 
-mob = mobile[0:20]
-f.write('\n' + mob + ', ' + '\n')
+
 
 # Getting mobile number:
-# container_mobile = soup_one.findAll('div', {'id': 'secondary-details'} )
-# mobile = container_mobile[0].text 
-# mobille = mobile[0:7]
-# number = mobile[8:20]
+container_mobile = soup_one.findAll('div', {'id': 'secondary-details'} )
+mobile = container_mobile[0].text 
+
 # mob = mobile[0:20]
-# print(mobille)
-# print(number)
-# print(mob)
+# f.write('\n' + mob + ', ' + '\n')
+mobille = mobile[0:7]
+number = mobile[8:20]
+f.write('\n' + mobille + ', ' + number + '\n')
+
 
 
 # print(container.div.div.div.text)
@@ -82,7 +85,7 @@ f.write('\n' + mob + ', ' + '\n')
 # opening_days =  soup_one.findAll('span', {'class':'long-oh-day'})
 # opening_hours = soup_one.findAll('div', {'class': 'interval-field'}, 'div.span')
 
-
+f.write('Opening time: \n')
 for days  in opening_days[:7]:
     day = days.text 
     day_item = day + ': '
