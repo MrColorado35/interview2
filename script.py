@@ -25,9 +25,27 @@ soup_one = soup(req.content, 'html5lib')
 
 container = soup_one.find('div', {'id': 'company-address-container'})
 container_address = soup_one.findAll('span', {'class':'cp-details-label'})
-container_mobile = soup_one.findAll('div', {'class': 'cp-details-label'} )
-contain = container_address[0]
+container_mobile = soup_one.findAll('div', {'id': 'secondary-details'} )
+# contain = container_address[0]
 
+for contain in container:
+    address = contain.div.text 
+    address_item = address + ', '
+#     address_title = container_address[0].text
+#     address = container_address[1].text
+#     address_text = container.div.div.div.text
+#     print(address_title)
+#     print(address_text)
+print(address_item)
+
+mobile = container_mobile[0].text 
+
+number = mobile[8:20]
+# print(mobile)
+print(number)
+
+
+# print(container.div.div.div.text)
 # print(container.prettify())
 # print(len(container_address))
 # print(len(container_mobile))
@@ -36,5 +54,5 @@ opening_days =  soup_one.findAll('span', {'class':'long-oh-day'})
 opening_hours = soup_one.findAll('div', {'class': 'interval-field'})
 
 # print(len(opening_days))
-print(opening.prettify())
+# print(opening.prettify())
 
