@@ -27,7 +27,6 @@ container = soup_one.find('div', {'id': 'company-address-container'})
 container_address = soup_one.findAll('span', {'class':'cp-details-label'})
 container_mobile = soup_one.findAll('div', {'id': 'secondary-details'} )
 # contain = container_address[0]
-
 for contain in container_address:
     address = contain.text 
     address_item = address + ', '
@@ -59,6 +58,12 @@ opening = soup_one.find('div', {'id': 'opening-hours-mini'})
 opening_days =  soup_one.findAll('span', {'class':'long-oh-day'})
 opening_hours = soup_one.findAll('div', {'class': 'interval-field'})
 
-# print(len(opening_days))
+print(len(opening_days))
+# print(opening_days)
 # print(opening.prettify())
-
+for days  in opening_days[:7]:
+    day = days.text 
+    day_item = day + ': '
+    print(day_item)
+    # if day.index > 7:
+    #     break
