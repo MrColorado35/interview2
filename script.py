@@ -23,9 +23,10 @@ soup_one = soup(req.content, 'html5lib')
 # print(soup_one.prettify())
 # print(scraper.get(soup_one.prettify()))
 
-
+container = soup_one.find('div', {'id': 'company-address-container'})
 container_address = soup_one.findAll('span', {'class':'cp-details-label'})
 container_mobile = soup_one.findAll('div', {'class': 'cp-details-label'} )
 
-print(len(container_address))
-print(len(container_mobile))
+# print(container.prettify())
+# print(len(container_address))
+# print(len(container_mobile))
