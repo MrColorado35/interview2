@@ -1,4 +1,5 @@
 beautifulsoup4==4.9.3
 bs4==0.0.1
+cloudscraper==1.2.58
 html5lib==1.1
 soupsieve==2.2.1
