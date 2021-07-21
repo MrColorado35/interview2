@@ -25,32 +25,49 @@ container = soup_one.find('div', {'id': 'company-address-container'})
 container_address = soup_one.findAll('span', {'class':'cp-details-label'})
 container_data = soup_one.findAll('div', {'class':'col-sm-8'})
 
+container_mobile = soup_one.findAll('div', {'id': 'secondary-details'} )
+mobile = container_mobile[0].text 
+
+opening = soup_one.find('div', {'id': 'opening-hours-mini'})
+# Getting days and hours of the working week:
+opening_days =  soup_one.findAll('span', {'class':'long-oh-day'})
+opening_hours = soup_one.findAll('div', {'class': 'interval-field'}, 'div.span')
+
+filename = 'data_one.csv'
+f = open(filename, 'w')
+headers = "address_data, opening_hours\n"
+f.write(headers)
+
 # contain = container_address[0]
 for contain in container_address:
     address = contain.text 
     address_item = address + ', '
-    print(address_item)
+    f.write(address_item)
+    # print(address_item)
 
-for conts in container_data:
+for conts in container_data[:5]:
     con_data = conts.text
-    print(con_data)
+    f.write(con_data)
+    f.write('\n')
+    # print(con_data)
 #     address_title = container_address[0].text
 #     address = container_address[1].text
 #     address_text = container.div.div.div.text
 #     print(address_title)
 #     print(address_text)
 
-
+mob = mobile[0:20]
+f.write(mob)
 
 # Getting mobile number:
-container_mobile = soup_one.findAll('div', {'id': 'secondary-details'} )
-mobile = container_mobile[0].text 
+# container_mobile = soup_one.findAll('div', {'id': 'secondary-details'} )
+# mobile = container_mobile[0].text 
 # mobille = mobile[0:7]
 # number = mobile[8:20]
-mob = mobile[0:20]
+# mob = mobile[0:20]
 # print(mobille)
 # print(number)
-print(mob)
+# print(mob)
 
 
 # print(container.div.div.div.text)
@@ -59,22 +76,25 @@ print(mob)
 # print(len(container_mobile))
 
 
-opening = soup_one.find('div', {'id': 'opening-hours-mini'})
+# opening = soup_one.find('div', {'id': 'opening-hours-mini'})
 
 # Getting days and hours of the working week:
-opening_days =  soup_one.findAll('span', {'class':'long-oh-day'})
-opening_hours = soup_one.findAll('div', {'class': 'interval-field'}, 'div.span')
+# opening_days =  soup_one.findAll('span', {'class':'long-oh-day'})
+# opening_hours = soup_one.findAll('div', {'class': 'interval-field'}, 'div.span')
 
 
 for days  in opening_days[:7]:
     day = days.text 
     day_item = day + ': '
-    print(day_item)
+    f.write(day_item)
+    # print(day_item)
     if day == 'Saturday' or day == "Sunday":
-        print('Closed')
+        f.write('Closed')
+        # print('Closed')
     else:
         for hours in opening_hours[:1]:
             hour = hours.text
-            print(hour)
+            f.write(hour)
+            # print(hour)
 
 
