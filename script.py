@@ -11,6 +11,6 @@ scraper = cloudscraper.CloudScraper()
 req = scraper.get(my_url)
 
 soup_one = soup(req.content, 'html5lib')
-# print(soup_one.prettify())
+print(soup_one.prettify())
 
-print(scraper.get(soup_one.prettify()))
+# print(scraper.get(soup_one.prettify()))
