@@ -7,5 +7,5 @@ my_url = 'https://bournemouth.cylex-uk.co.uk/company/parkside-motor-company-2694
 req = requests.get(my_url)
 
 soup_one = soup(req.content, 'html5lib')
-# print(soup_one.prettify())
+print(soup_one.prettify())
 
