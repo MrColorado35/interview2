@@ -33,22 +33,22 @@ opening = soup_one.find('div', {'id': 'opening-hours-mini'})
 opening_days =  soup_one.findAll('span', {'class':'long-oh-day'})
 opening_hours = soup_one.findAll('div', {'class': 'interval-field'}, 'div.span')
 
-filename = 'data_one.csv'
+filename = 'data_three.csv'
 f = open(filename, 'w')
-headers = "address_data, opening_hours\n"
+headers = "Our data: \n"
 f.write(headers)
 
 # contain = container_address[0]
 for contain in container_address:
     address = contain.text 
-    address_item = address + ', '
-    f.write(address_item)
+    # address_item = address + ': '
+    f.write(address + ', ')
     # print(address_item)
-
-for conts in container_data[:5]:
+f.write('\n')
+for conts in container_data[:3]:
     con_data = conts.text
-    f.write(con_data)
-    f.write('\n')
+    f.write(con_data + ', ')
+    # f.write('\n')
     # print(con_data)
 #     address_title = container_address[0].text
 #     address = container_address[1].text
@@ -57,7 +57,7 @@ for conts in container_data[:5]:
 #     print(address_text)
 
 mob = mobile[0:20]
-f.write(mob)
+f.write('\n' + mob + ', ' + '\n')
 
 # Getting mobile number:
 # container_mobile = soup_one.findAll('div', {'id': 'secondary-details'} )
@@ -86,15 +86,15 @@ f.write(mob)
 for days  in opening_days[:7]:
     day = days.text 
     day_item = day + ': '
-    f.write(day_item)
+    f.write(day_item + ', ')
     # print(day_item)
     if day == 'Saturday' or day == "Sunday":
-        f.write('Closed')
+        f.write('Closed'+ ', \n')
         # print('Closed')
     else:
         for hours in opening_hours[:1]:
             hour = hours.text
-            f.write(hour)
+            f.write(hour + ', \n')
             # print(hour)
-
+f.close()
 
