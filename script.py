@@ -51,7 +51,7 @@ mobile = container_mobile[0].text
 # f.write('\n' + mob + ', ' + '\n')
 mobille = mobile[0:7]
 number = mobile[8:20]
-f.write('\n' + mobille + ', ' + number + '\n')
+f.write('\n\n' + mobille + ', ' + number + '\n')
 
 
 opening = soup_one.find('div', {'id': 'opening-hours-mini'})
@@ -76,7 +76,14 @@ for days  in opening_days[:7]:
 
 description = soup_one.find('div', {'class': 'card card-left-padding'})
 # print(description.prettify())
-
+# print(description.text)
+description_one =  soup_one.findAll('span', {'itemprop':'name'})
+# print(description_one)
+f.write("\n "+ comp + ", Can be found in following Categories: \n ,")
+for descript in description_one:
+    desc = descript.text
+    f.write( desc + ', \n ,')
+# opening_hours = soup_one.findAll('div', {'class': 'interval-field'}, 'div.span')
 
 
 
