@@ -75,15 +75,13 @@ for days  in opening_days[:7]:
 # Getting company's description:
 
 description = soup_one.find('div', {'class': 'card card-left-padding'})
-# print(description.prettify())
-# print(description.text)
 description_one =  soup_one.findAll('span', {'itemprop':'name'})
 # print(description_one)
 f.write("\n "+ comp + ", Can be found in following Categories: \n ,")
 for descript in description_one:
     desc = descript.text
     f.write( desc + ', \n ,')
-# opening_hours = soup_one.findAll('div', {'class': 'interval-field'}, 'div.span')
+
 
 
 
