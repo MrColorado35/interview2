@@ -1,6 +1,5 @@
 import requests
 import cloudscraper
-from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 
 my_url = 'https://bournemouth.cylex-uk.co.uk/company/parkside-motor-company-26942573.html'
@@ -11,7 +10,7 @@ scraper = cloudscraper.CloudScraper()
 # code for unprotected websites, where we don't need scraper:
 # req = requests.get(my_url)
 
-# Grabbinbg the page despite it's security systems:
+# Grabbing the page despite it's security systems:
 req = scraper.get(my_url)
 req.close()
 
@@ -46,13 +45,12 @@ for conts in container_data[:3]:
 # Getting mobile number:
 container_mobile = soup_one.findAll('div', {'id': 'secondary-details'} )
 mobile = container_mobile[0].text 
-# In case if you want to change 'mobile' to vertical, uncomment next two lanes:
+# In case if you want to change 'mobile' layout to vertical, uncomment next two lanes:
 # mob = mobile[0:20]
-# f.write('\n' + mob + ', ' + '\n')
+# f.write('\n\n' + mob + ', ' + '\n\n')
 mobille = mobile[0:7]
 number = mobile[8:20]
 f.write('\n\n' + mobille + ', ' + number + '\n\n')
-
 
 opening = soup_one.find('div', {'id': 'opening-hours-mini'})
 
@@ -76,15 +74,10 @@ for days  in opening_days[:7]:
 
 description = soup_one.find('div', {'class': 'card card-left-padding'})
 description_one =  soup_one.findAll('span', {'itemprop':'name'})
-# print(description_one)
 f.write("\n "+ comp + ", Can be found in following Categories: \n ,")
 for descript in description_one:
     desc = descript.text
     f.write( desc + ', \n ,')
-
-
-
-
 
 
 f.close()
