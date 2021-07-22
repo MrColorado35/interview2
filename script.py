@@ -7,7 +7,7 @@ my_url = 'https://bournemouth.cylex-uk.co.uk/company/parkside-motor-company-2694
 
 
 scraper = cloudscraper.CloudScraper()
-# scraper = cloudscraper.create_scraper()
+# scraper = cloudscraper.create_scraper() - alternative to the one above
 # code for unprotected websites, where we don't need scraper:
 # req = requests.get(my_url)
 
@@ -46,7 +46,7 @@ for conts in container_data[:3]:
 # Getting mobile number:
 container_mobile = soup_one.findAll('div', {'id': 'secondary-details'} )
 mobile = container_mobile[0].text 
-# In case if you want to change mobile to vertical, not horizontal, uncomment next two lanes:
+# In case if you want to change 'mobile' to vertical, uncomment next two lanes:
 # mob = mobile[0:20]
 # f.write('\n' + mob + ', ' + '\n')
 mobille = mobile[0:7]
@@ -71,5 +71,15 @@ for days  in opening_days[:7]:
         for hours in opening_hours[:1]:
             hour = hours.text
             f.write(hour + ', \n')
-f.close()
 
+# Getting company's description:
+
+description = soup_one.find('div', {'class': 'card card-left-padding'})
+# print(description.prettify())
+
+
+
+
+
+
+f.close()
