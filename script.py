@@ -51,7 +51,7 @@ mobile = container_mobile[0].text
 # f.write('\n' + mob + ', ' + '\n')
 mobille = mobile[0:7]
 number = mobile[8:20]
-f.write('\n\n' + mobille + ', ' + number + '\n')
+f.write('\n\n' + mobille + ', ' + number + '\n\n')
 
 
 opening = soup_one.find('div', {'id': 'opening-hours-mini'})
