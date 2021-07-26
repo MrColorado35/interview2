@@ -70,6 +70,7 @@ def get_data_one():
 
 
 my_url = 'https://bournemouth.cylex-uk.co.uk/car%20dealers.html'
+
 def get_objects(my_url):
     scraper = cloudscraper.CloudScraper()
 
@@ -79,36 +80,17 @@ def get_objects(my_url):
 
     soup_one = soup(req.content, 'html5lib')
 
-    container_outside = soup_one.findAll('li', {'itemprop':'itemListElement'})
+    container_address = soup_one.findAll('div', {'class':'row address-with-medal'})
+    container_field = soup_one.findAll('span', {'class':'block bold h4'})
 
-    for container in container_outside:
-        # name = container_large.div.div.span.a.text
-        # name = container.find('span', {'name':'block bold h4'})
-        # a_name = name.text
-        container_address = soup_one.findAll('div', {'class':'row address-with-medal'})
-        # address = container_address.text
-
-        container_field = soup_one.findAll('span', {'class':'block bold h4'})
-        name = container_field[0].text
+    for container in container_field:
+        field = container.text 
+        f.write(field + '\n ')
 
 
-        # container_field = soup_one.findAll('div', {'class':'lm-h'})
-
-
-        # for container in container_field:
-        #     field = container.text 
-        #     f.write(field + '\n ')
-
-        for address in container_address:
-            addres = address.text
-        f.write(name + ', ' + addres + ', ')
-
-
-        
-        # for container in container_field:
-        #     field = container.text
-
-        #     f.write(', '+ field)
+    for address in container_address:
+        addres = address.text 
+        f.write(addres + ', ')
 
 my_url_list = ['https://bournemouth.cylex-uk.co.uk/car%20dealers-2.html','https://bournemouth.cylex-uk.co.uk/car%20dealers-3.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-4.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-5.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-6.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-7.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-8.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-9.html', ]
 
@@ -126,13 +108,13 @@ def get_companies():
 header = '\n\n Data about other car dealers in the area: \n\n'
 header_two = '\n\n Data about other companies in the Bournemouth area: \n\n'
 
-filename = 'my_data.csv'
+filename = 'data_three.csv'
 f = open(filename, 'w')
+
 get_data_one()
-
 f.write(header)
-get_many_car_dealers()
 
+get_many_car_dealers()
 f.write(header_two)
 get_companies()
 
