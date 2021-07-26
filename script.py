@@ -37,7 +37,7 @@ def get_data_one():
 # print(scraper.get(soup_one.prettify()))
 
 
-    container = soup_one.find('div', {'id': 'company-address-container'})
+    # container = soup_one.find('div', {'id': 'company-address-container'})
     container_address = soup_one.findAll('span', {'class':'cp-details-label'})
     company = soup_one.find('span', {'id': 'cntct-name'})
     comp = company.text
@@ -70,7 +70,7 @@ def get_data_one():
     number = mobile[8:20]
     f.write('\n\n' + mobille + ', ' + number + '\n\n')
 
-    opening = soup_one.find('div', {'id': 'opening-hours-mini'})
+    # opening = soup_one.find('div', {'id': 'opening-hours-mini'})
 
     # Getting opening days:
     opening_days =  soup_one.findAll('span', {'class':'long-oh-day'})
@@ -90,7 +90,7 @@ def get_data_one():
 
     # Getting company's description:
 
-    description = soup_one.find('div', {'class': 'card card-left-padding'})
+    # description = soup_one.find('div', {'class': 'card card-left-padding'})
     description_one =  soup_one.findAll('span', {'itemprop':'name'})
     f.write("\n "+ comp + ", Can be found in following Categories: \n ,")
     for descript in description_one:
@@ -126,12 +126,17 @@ def get_objects(my_url):
         addres = address.text 
         f.write(addres + ', ')
 
-my_url_list = ['https://bournemouth.cylex-uk.co.uk/car%20dealers-2.html','https://bournemouth.cylex-uk.co.uk/car%20dealers-3.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-4.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-5.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-6.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-7.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-8.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-9.html']
+my_url_list = ['https://bournemouth.cylex-uk.co.uk/car%20dealers-2.html','https://bournemouth.cylex-uk.co.uk/car%20dealers-3.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-4.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-5.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-6.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-7.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-8.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-9.html', ]
 
-def try_that():
+def get_many_car_dealers():
     for my_url in my_url_list:
         get_objects(my_url)
 
+bourne_list = ['https://www.cylex-uk.co.uk/s?q=&c=bournemouth&z=&p=1&dst=&sUrl=&cUrl=bournemouth', 'https://www.cylex-uk.co.uk/s?q=&c=bournemouth&z=&p=2&dst=&sUrl=&cUrl=bournemouth', 'https://www.cylex-uk.co.uk/s?q=&c=bournemouth&z=&p=3&dst=&sUrl=&cUrl=bournemouth', 'https://www.cylex-uk.co.uk/s?q=&c=bournemouth&z=&p=4&dst=&sUrl=&cUrl=bournemouth', 'https://www.cylex-uk.co.uk/s?q=&c=bournemouth&z=&p=5&dst=&sUrl=&cUrl=bournemouth', 'https://www.cylex-uk.co.uk/s?q=&c=bournemouth&z=&p=6&dst=&sUrl=&cUrl=bournemouth', 'https://www.cylex-uk.co.uk/s?q=&c=bournemouth&z=&p=7&dst=&sUrl=&cUrl=bournemouth', 'https://www.cylex-uk.co.uk/s?q=&c=bournemouth&z=&p=8&dst=&sUrl=&cUrl=bournemouth', 'https://www.cylex-uk.co.uk/s?q=&c=bournemouth&z=&p=9&dst=&sUrl=&cUrl=bournemouth', 'https://www.cylex-uk.co.uk/s?q=&c=bournemouth&z=&p=10&dst=&sUrl=&cUrl=bournemouth' ]
+
+def get_companies():
+    for my_url in bourne_list:
+        get_objects(my_url)
 
 
 
@@ -155,7 +160,8 @@ def try_that():
 #     get_objects()
 
 
-header = '\n\n Data about other companies in the area: \n'
+header = '\n\n Data about other car dealers in the area: \n\n'
+header_two = '\n\n Data about other companies in the Bournemouth area: \n\n'
 
 filename = 'data_three.csv'
 f = open(filename, 'w')
@@ -165,5 +171,9 @@ get_data_one()
 f.write(header)
 # get_objects()
 # get_many_objects()
-try_that()
+get_many_car_dealers()
+f.write(header_two)
+get_companies()
+
+
 f.close()
