@@ -46,7 +46,7 @@ def get_data_one():
     # Opening the .CSV file:
     # filename = 'data_three.csv'
     # f = open(filename, 'w')
-    headers = "Our data: \n"
+    headers = "Data about the object we care: \n"
     f.write(headers)
 
     #getting the address data:
@@ -97,9 +97,10 @@ def get_data_one():
         desc = descript.text
         f.write( desc + ', \n ,')
 
+
 my_url = 'https://bournemouth.cylex-uk.co.uk/car%20dealers.html'
 # def get_data_auto():
-def get_objects():
+def get_objects(my_url):
     # my_url = 'https://bournemouth.cylex-uk.co.uk/car%20dealers.html'
     scraper = cloudscraper.CloudScraper()
 # scraper = cloudscraper.create_scraper() - alternative to the one above
@@ -123,17 +124,46 @@ def get_objects():
 
     for address in container_address:
         addres = address.text 
-        # f.write(addres + ', ')
-         
+        f.write(addres + ', ')
+
+my_url_list = ['https://bournemouth.cylex-uk.co.uk/car%20dealers-2.html','https://bournemouth.cylex-uk.co.uk/car%20dealers-3.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-4.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-5.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-6.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-7.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-8.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-9.html']
+
+def try_that():
+    for my_url in my_url_list:
+        get_objects(my_url)
 
 
+
+
+# def get_many_objects():
+#     get_objects()
+#     my_url = 'https://bournemouth.cylex-uk.co.uk/car%20dealers-2.html'
+#     get_objects()
+#     my_url = 'https://bournemouth.cylex-uk.co.uk/car%20dealers-3.html'
+#     get_objects()
+#     my_url = 'https://bournemouth.cylex-uk.co.uk/car%20dealers-4.html'
+#     get_objects()
+#     my_url = 'https://bournemouth.cylex-uk.co.uk/car%20dealers-5.html'
+#     get_objects()
+#     my_url = 'https://bournemouth.cylex-uk.co.uk/car%20dealers-6.html'
+#     get_objects()
+#     my_url = 'https://bournemouth.cylex-uk.co.uk/car%20dealers-7.html'
+#     get_objects()
+#     my_url = 'https://bournemouth.cylex-uk.co.uk/car%20dealers-8.html'
+#     get_objects()
+#     my_url = 'https://bournemouth.cylex-uk.co.uk/car%20dealers-9.html'
+#     get_objects()
+
+
+header = '\n\n Data about other companies in the area: \n'
 
 filename = 'data_three.csv'
 f = open(filename, 'w')
 # headers = "Our data: \n"
 # f.write(headers)
 get_data_one()
-f.write('\n Data about other companies in the area: \n')
-get_objects()
-
+f.write(header)
+# get_objects()
+# get_many_objects()
+try_that()
 f.close()
