@@ -80,10 +80,16 @@ def get_objects(my_url):
     soup_one = soup(req.content, 'html5lib')
 
     container_address = soup_one.findAll('div', {'class':'row address-with-medal'})
+    # container_field = soup_one.findAll('div', {'class':'lm-desc'})
+    # container_field = soup_one.findAll('div', {'class':'lm-h'})
 
     for address in container_address:
         addres = address.text 
         f.write(addres + ', ')
+
+    # for container in container_field:
+    #     field = container.text
+    #     f.write(', '+ field)
 
 my_url_list = ['https://bournemouth.cylex-uk.co.uk/car%20dealers-2.html','https://bournemouth.cylex-uk.co.uk/car%20dealers-3.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-4.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-5.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-6.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-7.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-8.html', 'https://bournemouth.cylex-uk.co.uk/car%20dealers-9.html', ]
 
